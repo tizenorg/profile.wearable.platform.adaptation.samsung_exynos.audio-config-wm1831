@@ -1,0 +1,380 @@
+# Use case Configuration for ORBIS HiFi audio playback and capture
+
+
+######### Main Verb Config #################
+
+SectionVerb {
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+		cset "name='UCM Verb' HiFi"
+		cset "name='DSP3 Firmware' Ez2Control"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+		cset "name='UCM Verb' None"
+
+	]
+
+	# ALSA PCM
+	Value {
+		TQ "Music"
+		# ALSA PCM device for HiFi
+		PlaybackPCM "hw:ORBIS,0"
+		CapturePCM "hw:ORBIS,0"
+	}
+}
+
+########### Mainmic Device Options ################
+
+SectionDevice."Mainmic" {
+	Comment "main mic capture"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# ORBIS capture path
+		# Gain
+		cset "name='IN1R Digital Volume' 132"
+		cset "name='IN1L Digital Volume' 132"
+		# Path
+		cset "name='IN1 OSR' 0"
+		cset "name='IN1R HPF Switch' 0"
+		cset "name='IN1L HPF Switch' 0"
+		cset "name='AIF1TX1 Input 1' IN1L"
+		cset "name='AIF1TX2 Input 1' IN1R"
+		cset "name='Input Ramp Up' 8ms/6dB"
+
+		cset "name='UCM Device' Mainmic"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		cset "name='IN1R HPF Switch' 0"
+		cset "name='IN1L HPF Switch' 0"
+		cset "name='AIF1TX1 Input 1' None"
+		cset "name='AIF1TX2 Input 1' None"
+
+		cset "name='UCM Device' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CaptureChannels "2"
+		CapturePCM "hw:ORBIS,0"
+	}
+}
+
+########### VR_Mainmic Device Options for svoice ################
+
+SectionDevice."VR_Mainmic" {
+	Comment "VR main mic capture"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# ORBIS capture path
+		# Gain
+		cset "name='IN1R Digital Volume' 139"
+		cset "name='IN1L Digital Volume' 139"
+		# Path
+		cset "name='IN1 OSR' 0"
+		cset "name='IN1R HPF Switch' 1"
+		cset "name='IN1L HPF Switch' 1"
+		cset "name='AIF1TX1 Input 1' IN1L"
+		cset "name='AIF1TX2 Input 1' IN1R"
+		cset "name='Input Ramp Up' 8ms/6dB"
+
+		cset "name='UCM Device' VR_Mainmic"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		cset "name='IN1R HPF Switch' 0"
+		cset "name='IN1L HPF Switch' 0"
+		cset "name='AIF1TX1 Input 1' None"
+		cset "name='AIF1TX2 Input 1' None"
+
+		cset "name='UCM Device' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CaptureChannels "2"
+		CapturePCM "hw:ORBIS,0"
+	}
+}
+
+########### STT_Mainmic Device Options for svoice ################
+
+SectionDevice."STT_Mainmic" {
+	Comment "STT main mic capture"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# ORBIS capture path
+		# Gain
+		cset "name='IN1R Digital Volume' 139"
+		cset "name='IN1L Digital Volume' 139"
+		# Path
+		cset "name='IN1 OSR' 0"
+		cset "name='IN1R HPF Switch' 1"
+		cset "name='IN1L HPF Switch' 1"
+		cset "name='AIF1TX1 Input 1' IN1L"
+		cset "name='AIF1TX2 Input 1' IN1R"
+		cset "name='Input Ramp Up' 8ms/6dB"
+
+		cset "name='UCM Device' STT_Mainmic"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		cset "name='IN1R HPF Switch' 0"
+		cset "name='IN1L HPF Switch' 0"
+		cset "name='AIF1TX1 Input 1' None"
+		cset "name='AIF1TX2 Input 1' None"
+
+		cset "name='UCM Device' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CaptureChannels "2"
+		CapturePCM "hw:ORBIS,0"
+	}
+}
+
+SectionDevice."Handsfree" {
+	Comment "Handsfree Speaker playback"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		PlaybackPCM "hw:ORBIS,0"
+		PlaybackChannels "2"
+	}
+}
+
+SectionDevice."Headphones" {
+	Comment "Headphones playback"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		PlaybackPCM "hw:ORBIS,0"
+		PlaybackChannels "2"
+	}
+}
+
+SectionDevice."BluetoothNB" {
+	Comment "BT SCO Tx/Rx 8kHz"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# Sample Rate
+		cset "name='Sample Rate 2' 8kHz"
+
+		# Gain
+		cset "name='AIF1TX1 Input 1 Volume' 32"
+		cset "name='AIF1TX2 Input 1 Volume' 32"
+
+		cset "name='AIF2TX1 Input 1 Volume' 32"
+		cset "name='AIF2TX2 Input 1 Volume' 32"
+
+		# Path
+		cset "name='ISRC1 FSL' 1"
+		cset "name='ISRC1 FSH' 0"
+		cset "name='ISRC1DEC1 Input' AIF1RX1"
+		cset "name='ISRC1DEC2 Input' AIF1RX2"
+
+		cset "name='AIF2TX1 Input 1' ISRC1DEC1"
+		cset "name='AIF2TX2 Input 1' ISRC1DEC2"
+	]
+
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# Gain
+		# Path
+		cset "name='ISRC1 FSL' 0"
+		cset "name='ISRC1 FSH' 0"
+		cset "name='ISRC1DEC1 Input' None"
+		cset "name='ISRC1DEC2 Input' None"
+		cset "name='AIF2TX1 Input 1' None"
+		cset "name='AIF2TX2 Input 1' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CapturePCM "hw:ORBIS,0"
+		PlaybackPCM "hw:ORBIS,0"
+	}
+}
+
+SectionDevice."BluetoothWB" {
+	Comment "BT SCO Tx/Rx 16kHz"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# Sample Rate
+		cset "name='Sample Rate 2' 16kHz"
+
+		# Gain
+		cset "name='AIF1TX1 Input 1 Volume' 32"
+		cset "name='AIF1TX2 Input 1 Volume' 32"
+
+		cset "name='AIF2TX1 Input 1 Volume' 32"
+		cset "name='AIF2TX2 Input 1 Volume' 32"
+
+		# Path
+		cset "name='ISRC1 FSL' 1"
+		cset "name='ISRC1 FSH' 0"
+		cset "name='ISRC1DEC1 Input' AIF1RX1"
+		cset "name='ISRC1DEC2 Input' AIF1RX2"
+
+		cset "name='AIF2TX1 Input 1' ISRC1DEC1"
+		cset "name='AIF2TX2 Input 1' ISRC1DEC2"
+	]
+
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		# Gain
+		# Path
+		cset "name='ISRC1 FSL' 0"
+		cset "name='ISRC1 FSH' 0"
+		cset "name='ISRC1DEC1 Input' None"
+		cset "name='ISRC1DEC2 Input' None"
+		cset "name='AIF2TX1 Input 1' None"
+		cset "name='AIF2TX2 Input 1' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CapturePCM "hw:ORBIS,0"
+		PlaybackPCM "hw:ORBIS,0"
+	}
+}
+
+SectionDevice."Ez2ControlTP" {
+	Comment "Ez2Control include trigger phrase"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		cset "name='UCM Device' Begin"
+		# Configuring Ez2Control
+		cset "name='Sample Rate 3' 16kHz"
+		# In Rate "SYNCCLK Rate 3"
+		cset "name='In Rate' 2"
+		# DSP3 Rate "SYNCCLK Rate 3"
+		cset "name='DSP3 Rate' 2"
+		cset "name='DSP3 Firmware' Ez2Control"
+		cset "name='IN HPF Cutoff Frequency' 40Hz"
+		cset "name='IN1L HPF Switch' 1"
+		cset "name='IN1L Digital Volume' 139"
+		cset "name='IN1 OSR' 768kHz"
+		cset "name='DSP3 Aux 1' IN1L"
+		cset "name='DSP Virtual Output Mux' DSP3"
+		# Include detected trigger phrase
+		cset "name='DSP3 ZM 24:0' 0,0,128,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,176,0,0,5,128,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,144,0,0,0,0"
+
+		cset "name='UCM Device' Ez2ControlTP"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+		cset "name='DSP Virtual Output Mux' None"
+
+		cset "name='UCM Device' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CaptureChannels "1"
+		CapturePCM "hw:ORBIS,1"
+	}
+}
+
+SectionDevice."Ez2Control" {
+	Comment "Ez2Control without trigger phrase"
+
+	EnableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+
+		cset "name='UCM Device' Begin"
+		# Configuring Ez2Control
+		cset "name='Sample Rate 3' 16kHz"
+		# In Rate "SYNCCLK Rate 3"
+		cset "name='In Rate' 2"
+		# DSP3 Rate "SYNCCLK Rate 3"
+		cset "name='DSP3 Rate' 2"
+		cset "name='DSP3 Firmware' Ez2Control"
+		cset "name='IN HPF Cutoff Frequency' 40Hz"
+		cset "name='IN1L HPF Switch' 1"
+		cset "name='IN1L Digital Volume' 139"
+		cset "name='IN1 OSR' 768kHz"
+		cset "name='DSP3 Aux 1' IN1L"
+		cset "name='DSP Virtual Output Mux' DSP3"
+		# Remove detected trigger phrase
+		cset "name='DSP3 ZM 24:0' 0,0,128,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,176,0,0,5,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,144,0,0,0,0"
+
+		cset "name='UCM Device' Ez2Control"
+	]
+
+	DisableSequence [
+		# Set ORBIS device for following cset commands
+		cdev "hw:ORBIS"
+		cset "name='DSP Virtual Output Mux' None"
+
+		cset "name='UCM Device' None"
+	]
+
+	Value {
+		# Default ALSA volume gain and mute kcontrols
+		CaptureChannels "1"
+		CapturePCM "hw:ORBIS,1"
+	}
+}
