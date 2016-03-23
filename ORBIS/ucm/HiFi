@@ -30,7 +30,7 @@ SectionVerb {
 
 ########### Mainmic Device Options ################
 
-SectionDevice."Mainmic" {
+SectionDevice."MainMic" {
 	Comment "main mic capture"
 
 	EnableSequence [
@@ -73,7 +73,7 @@ SectionDevice."Mainmic" {
 
 ########### VR_Mainmic Device Options for svoice ################
 
-SectionDevice."VR_Mainmic" {
+SectionDevice."VR_MainMic" {
 	Comment "VR main mic capture"
 
 	EnableSequence [
@@ -116,7 +116,7 @@ SectionDevice."VR_Mainmic" {
 
 ########### STT_Mainmic Device Options for svoice ################
 
-SectionDevice."STT_Mainmic" {
+SectionDevice."STT_MainMic" {
 	Comment "STT main mic capture"
 
 	EnableSequence [
