@@ -8,6 +8,10 @@ BuildArch:  noarch
 Source0:    audio-config-wm1831-%{version}.tar.gz
 Requires(post): coreutils
 
+%if "%{?profile}" != "wearable" || "%{?_with_emulator}" == "1"
+ExcludeArch: noarch
+%endif
+
 %description
 audio configuration files for spreadtrum devices such as ucm files.
 
